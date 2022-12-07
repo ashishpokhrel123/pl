@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
+  teamScore: [],
+  items: null,
 };
 
 const modalSlice = createSlice({

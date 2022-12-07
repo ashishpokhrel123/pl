@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../feature/modalSlice";
-import { fetchScore } from "../feature/scoreSlice";
+import { fetchScore, fetchTeam } from "../feature/scoreSlice";
 import "./table.css";
 
 function Table() {
   const dispatch = useDispatch();
   const { score } = useSelector((state) => state.score);
-  console.log(score, "score");
+  const team = useSelector((state) => state.score.team);
+  console.log(team, "my team");
+
+  let searchTeam;
 
   useEffect(() => {
     dispatch(fetchScore());
   }, []);
+
+  const handleTeam = (name) => {
+    searchTeam = name;
+
+    dispatch(openModal());
+    dispatch(fetchTeam(name));
+  };
 
   return (
     <div>
@@ -36,7 +46,7 @@ function Table() {
             <tr
               key={index}
               className="tableRowIems"
-              onClick={() => dispatch(openModal())}
+              onClick={() => handleTeam(data.name)}
             >
               <td className="tableCell">{data.position}</td>
               <td className="tableCell">{data.name}</td>

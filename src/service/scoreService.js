@@ -23,8 +23,6 @@ const getFootballScore = async () => {
     clubScore.push(score);
   });
 
-  console.log(clubScore, "totalscore");
-
   let win = 0,
     draw = 0,
     loss = 0;
@@ -47,8 +45,16 @@ const getFootballScore = async () => {
   return leagueStanding;
 };
 
+const getTeam = async (teamName) => {
+  const filtered = await leagueStanding.filter(
+    (item) => item.name === teamName
+  );
+
+  return filtered;
+};
 const ScoreService = {
   getFootballScore,
+  getTeam,
 };
 
 export default ScoreService;
