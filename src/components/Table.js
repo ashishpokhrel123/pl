@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../feature/modalSlice";
 import { fetchScore } from "../feature/scoreSlice";
 import "./table.css";
 
@@ -32,7 +33,11 @@ function Table() {
         </thead>
         <tbody>
           {score.map((data, index) => (
-            <tr key={index} className="tableRowIems">
+            <tr
+              key={index}
+              className="tableRowIems"
+              onClick={() => dispatch(openModal())}
+            >
               <td className="tableCell">{data.position}</td>
               <td className="tableCell">{data.name}</td>
               <td className="tableCell">{data.played}</td>
